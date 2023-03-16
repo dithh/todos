@@ -5,7 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "test",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "lint": "eslint --fix src/* --ext .ts"
   },
   "author": "",
   "license": "ISC",

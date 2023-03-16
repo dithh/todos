@@ -2,5 +2,8 @@
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "ts-node ./src/server.ts"
+  "exec": "ts-node ./src/server.ts",
+  "events": {
+    "restart": "npm run lint"
+  }
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import todos from './todos/routes'
+import { router as todosRouter } from './todos/routes'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
@@ -14,6 +14,6 @@ mongoose
 
 app.use(bodyParser.json())
 
-app.use('/api/todos', todos)
+app.use('/api/todos', todosRouter)
 
 export default app
