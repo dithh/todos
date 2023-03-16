@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 
 dotenv.config()
 
-const app = express()
+export const app = express()
 mongoose
     .connect(`${process.env.DATABASE_URL}:${process.env.DATABASE_PORT}/todos`)
     .then(() => console.log('mongo connected'))
@@ -15,5 +15,3 @@ mongoose
 app.use(bodyParser.json())
 
 app.use('/api/todos', todosRouter)
-
-export default app
