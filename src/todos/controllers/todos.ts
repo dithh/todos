@@ -31,7 +31,7 @@ export const createUser = async (req: Request, res: Response) => {
     }
 }
 
-export const patchUser = async (req: Request, res: Response) => {
+export const patchUserById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
         const update = req.body
@@ -40,6 +40,20 @@ export const patchUser = async (req: Request, res: Response) => {
         res.json({ message: `Todo ${id} updated`, data: todo })
     } catch (e) {
         console.error(e)
+        res.status(500)
+        res.json({ message: 'There was an error ' })
+    }
+}
+
+export const replaceUserById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const update = req.body
+        const todo = await Todo.findOneAndReplace({ _id: id }, update, {
+            new: true,
+        })
+        res.json({ message: `Todo ${id} updated`, todo })
+    } catch (e) {
         res.status(500)
         res.json({ message: 'There was an error ' })
     }

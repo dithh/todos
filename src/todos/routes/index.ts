@@ -3,9 +3,10 @@ import {
     getAllUsers,
     getUserById,
     createUser,
-    patchUser,
+    patchUserById,
     deleteUserByid,
-} from '../controllers/todosController'
+    replaceUserById,
+} from '../controllers/todos'
 
 export const router = Router()
 
@@ -15,8 +16,8 @@ router.get('/:id', getUserById)
 
 router.post('/', createUser)
 
-router.patch('/:id', patchUser)
+router.patch('/:id', patchUserById)
 
 router.delete('/:id', deleteUserByid)
 
-// router.put('/:id', putUserById)
+router.put('/:id', replaceUserById)
