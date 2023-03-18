@@ -8,16 +8,16 @@ import {
     replaceTodoById,
 } from '../controllers/todos'
 
-export const router = Router()
+export const todosRouter = Router()
 
-router.get('/', getAllTodos)
+todosRouter.get('/', getAllTodos)
 
-router.get('/:id', getTodoById)
+todosRouter.get('/:id', getTodoById)
 
-router.post('/', createTodo)
+todosRouter.post('/', createTodo)
 
-router.patch('/:id', patchTodoById)
+todosRouter.patch('/:id', patchTodoById)
 
-router.delete('/:id', deleteTodoById)
+todosRouter.delete('/:id', deleteTodoById)
 
-router.put('/:id', replaceTodoById)
+todosRouter.put('/:id', replaceTodoById)

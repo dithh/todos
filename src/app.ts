@@ -1,9 +1,10 @@
 import express, { NextFunction, Request, Response } from 'express'
-import { router as todosRouter } from './todos/routes'
+import { todosRouter as todosRouter } from './todos/routes'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import type { ErrorRequestHandler } from 'express'
+import { usersRouter } from './users/routes/usersRouter'
 
 dotenv.config()
 
@@ -25,4 +26,5 @@ mongoose
 
 app.use(bodyParser.json())
 app.use('/api/todos', todosRouter)
+app.use('/api/users', usersRouter)
 app.use(globalErrorHandler)

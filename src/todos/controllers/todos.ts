@@ -1,7 +1,7 @@
 import { Todo } from '../schema'
 import { NextFunction, Request, Response } from 'express'
 import { handleResourceResponse } from '../../utils/handleResourceResponse'
-import { TodoType } from '../types/Todo'
+import { TodoType } from '../types/TodoType'
 
 export const getAllTodos = async (req: Request, res: Response) => {
     const todos = await Todo.find()

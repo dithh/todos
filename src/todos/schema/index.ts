@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose'
-import { TodoType } from '../types/Todo'
+import { TodoType } from '../types/TodoType'
 
 const todoSchema = new Schema<TodoType>({
     name: { type: String, required: true },
