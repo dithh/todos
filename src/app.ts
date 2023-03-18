@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express'
+import cookieParser from 'cookie-parser'
 import { todosRouter as todosRouter } from './todos/routes'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
@@ -25,6 +26,7 @@ mongoose
     .catch((error) => console.log(error))
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use('/api/todos', todosRouter)
 app.use('/api/users', usersRouter)
 app.use(globalErrorHandler)

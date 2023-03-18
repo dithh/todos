@@ -38,7 +38,21 @@ export const loginUser = async (
         if (!isPasswordValid) {
             return res.json({ message: 'Password invalid' })
         }
+        res.cookie('token', 'fake token', { httpOnly: true, secure: true })
         res.json({ message: 'User logged in' })
+    } catch (e) {
+        next(e)
+    }
+}
+
+export const logoutUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        res.clearCookie('token')
+        res.json({ message: 'Logged out' })
     } catch (e) {
         next(e)
     }
