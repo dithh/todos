@@ -1,23 +1,23 @@
 import { Router } from 'express'
 import {
-    getAllUsers,
-    getUserById,
-    createUser,
-    patchUserById,
-    deleteUserByid,
-    replaceUserById,
+    getAllTodos,
+    getTodoById,
+    createTodo,
+    patchTodoById,
+    deleteTodoById,
+    replaceTodoById,
 } from '../controllers/todos'
 
 export const router = Router()
 
-router.get('/', getAllUsers)
+router.get('/', getAllTodos)
 
-router.get('/:id', getUserById)
+router.get('/:id', getTodoById)
 
-router.post('/', createUser)
+router.post('/', createTodo)
 
-router.patch('/:id', patchUserById)
+router.patch('/:id', patchTodoById)
 
-router.delete('/:id', deleteUserByid)
+router.delete('/:id', deleteTodoById)
 
-router.put('/:id', replaceUserById)
+router.put('/:id', replaceTodoById)
