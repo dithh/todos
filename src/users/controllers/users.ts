@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import { User } from '../schema/userSchema'
-import jwt from 'jsonwebtoken'
+import { setAuthTokenCookie } from '../../utils/setAuthTokenCookie'
 
 export const createUser = async (
     req: Request,
@@ -39,8 +39,7 @@ export const loginUser = async (
         if (!isPasswordValid) {
             return res.json({ message: 'Password invalid' })
         }
-        const token = jwt.sign({ id: user.id }, 'key')
-        res.cookie('token', token, { httpOnly: true, secure: true })
+        setAuthTokenCookie({ username: body.username }, res)
         res.json({ message: 'User logged in' })
     } catch (e) {
         next(e)

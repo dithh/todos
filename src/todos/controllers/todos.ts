@@ -8,15 +8,17 @@ export const getAllTodos = async (req: Request, res: Response) => {
     res.json(todos)
 }
 
-export const getTodoById = async (req: Request, res: Response) => {
+export const getTodoById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
     try {
         const { id } = req.params
         const todo = await Todo.findById(id)
         handleResourceResponse<TodoType>(res, todo)
     } catch (e) {
-        console.error(e)
-        res.status(400)
-        res.json({ message: 'There was an error' })
+        next(e)
     }
 }
 
