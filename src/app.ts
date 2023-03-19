@@ -19,6 +19,20 @@ const globalErrorHandler: ErrorRequestHandler = (
     res.json({ message: err.message })
 }
 
+const authorizationHandler = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const { token } = req.cookies
+    if (!token) {
+        res.status(401)
+        res.send({ message: 'Unathorized' })
+    } else {
+        next()
+    }
+}
+
 export const app = express()
 mongoose
     .connect(`${process.env.DATABASE_URL}:${process.env.DATABASE_PORT}/todos`)
@@ -27,6 +41,7 @@ mongoose
 
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use('/api/todos', todosRouter)
 app.use('/api/users', usersRouter)
+app.use(authorizationHandler)
+app.use('/api/todos', todosRouter)
 app.use(globalErrorHandler)
