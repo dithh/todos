@@ -1,7 +1,7 @@
 import { Todo } from '../schema'
 import { NextFunction, Request, Response } from 'express'
 import { sendResourceIfExists } from '../../utils/sendResourceIfExists'
-import { TodoType } from '../types/TodoType'
+import { TodoType } from '../../types/TodoType'
 import { AuthTokenData, getDataFromToken } from '../../utils/getDataFromToken'
 import { User } from '../../users/schema/userSchema'
 
@@ -41,13 +41,13 @@ export const createTodo = async (
         const { authToken } = req.cookies
         const { id } = <AuthTokenData>getDataFromToken(authToken)
         const user = await User.findById(id)
-        if (user) {
-            const todo = await new Todo({ ...req.body, owner: id }).save()
-            user.todos.push(todo.id)
-            await user.save()
-            res.json(todo)
+        if (!user) {
+            return res.json({ message: 'User not found' })
         }
-        res.json({ message: 'User not found' })
+        const todo = await new Todo({ ...req.body, owner: id }).save()
+        user.todos.push(todo.id)
+        await user.save()
+        res.json(todo)
     } catch (e) {
         next(e)
     }

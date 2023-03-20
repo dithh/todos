@@ -1,4 +1,4 @@
-import { TodoType } from '../../todos/types/TodoType'
+import { TodoType } from './TodoType'
 import { Schema } from 'mongoose'
 
 export type UserType = {
