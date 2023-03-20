@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
 import { TodoType } from '../../types/TodoType'
 
-const todoSchema = new Schema<TodoType>({
+const todo = new Schema<TodoType>({
     name: { type: String, required: true },
     description: { type: String, required: true },
     isFinished: { type: Boolean, required: true },
@@ -12,4 +12,4 @@ const todoSchema = new Schema<TodoType>({
     },
 })
 
-export const Todo = model<TodoType>('Todo', todoSchema)
+export const Todo = model<TodoType>('Todo', todo)

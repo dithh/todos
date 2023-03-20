@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
 import { UserType } from '../../types/UserType'
 
-const userSchema = new Schema<UserType>({
+const user = new Schema<UserType>({
     username: {
         type: String,
         required: true,
@@ -19,4 +19,4 @@ const userSchema = new Schema<UserType>({
     ],
 })
 
-export const User = model<UserType>('User', userSchema)
+export const User = model<UserType>('User', user)

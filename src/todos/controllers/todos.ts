@@ -1,8 +1,8 @@
-import { Todo } from '../schema'
+import { Todo } from '../schema/todo'
 import { NextFunction, Request, Response } from 'express'
 import { sendResourceIfExists } from '../../utils/sendResourceIfExists'
 import { TodoType } from '../../types/TodoType'
-import { User } from '../../users/schema/userSchema'
+import { User } from '../../users/schema/user'
 
 export const getAllTodos = async (req: Request, res: Response) => {
     const { userId } = req.body
