@@ -7,6 +7,7 @@ import bodyParser from 'body-parser'
 import type { ErrorRequestHandler } from 'express'
 import { usersRouter } from './users/routes/usersRouter'
 import jwt from 'jsonwebtoken'
+import { TokenDataType } from './types/TokenDataType'
 
 dotenv.config()
 
@@ -26,11 +27,14 @@ const authorizationHandler = (
     next: NextFunction
 ) => {
     const { authToken } = req.cookies
-    const isTokenValid = jwt.verify(authToken, 'key')
-    if (!authToken || !isTokenValid) {
+    const tokenData = <TokenDataType>(
+        jwt.verify(authToken, <string>process.env['JWT_SECRET'])
+    )
+    if (!authToken || !tokenData) {
         res.status(401)
         res.send({ message: 'Unathorized' })
     } else {
+        req.body.userId = tokenData.id
         next()
     }
 }
