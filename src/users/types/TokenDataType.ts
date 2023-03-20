@@ -1,3 +1,3 @@
 export type TokenDataType = {
-    username: string
+    id: string
 }

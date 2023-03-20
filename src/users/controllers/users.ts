@@ -39,7 +39,7 @@ export const loginUser = async (
         if (!isPasswordValid) {
             return res.json({ message: 'Password invalid' })
         }
-        setAuthTokenCookie({ username: body.username }, res)
+        setAuthTokenCookie({ id: user.id }, res)
         res.json({ message: 'User logged in' })
     } catch (e) {
         next(e)

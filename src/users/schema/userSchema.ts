@@ -11,6 +11,12 @@ const userSchema = new Schema<UserType>({
         type: String,
         required: true,
     },
+    todos: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Todo',
+        },
+    ],
 })
 
 export const User = model<UserType>('User', userSchema)

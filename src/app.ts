@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import type { ErrorRequestHandler } from 'express'
 import { usersRouter } from './users/routes/usersRouter'
+import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
@@ -24,8 +25,9 @@ const authorizationHandler = (
     res: Response,
     next: NextFunction
 ) => {
-    const { token } = req.cookies
-    if (!token) {
+    const { authToken } = req.cookies
+    const isTokenValid = jwt.verify(authToken, 'key')
+    if (!authToken || !isTokenValid) {
         res.status(401)
         res.send({ message: 'Unathorized' })
     } else {
