@@ -43,7 +43,7 @@ export const app = express()
 mongoose
     .connect(`${process.env.DATABASE_URL}:${process.env.DATABASE_PORT}/todos`)
     .then(() => console.log('mongo connected'))
-    .catch((error) => console.log(error))
+    .catch((error) => console.error(error))
 
 app.use(bodyParser.json())
 app.use(cookieParser())
