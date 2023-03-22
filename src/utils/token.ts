@@ -1,6 +1,10 @@
-import jwt from 'jsonwebtoken'
-import { Response } from 'express'
+import jwt, { decode, JwtPayload } from 'jsonwebtoken'
 import { TokenDataType } from '../types/TokenDataType'
+import { Response } from 'express'
+
+export interface AuthTokenData extends JwtPayload {
+    id?: string
+}
 
 export const setAuthTokenCookie = (tokenData: TokenDataType, res: Response) => {
     const token = jwt.sign(tokenData, <string>process.env['JWT_SECRET'])
