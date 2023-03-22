@@ -1,5 +1,9 @@
 import { Router } from 'express'
-import { createUser, loginUser, logoutUser } from '../controllers/users'
+import {
+    createUser,
+    loginUser,
+    logoutUser,
+} from '../controllers/usersController'
 
 export const usersRouter = Router()
 

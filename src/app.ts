@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
-import { todosRouter as todosRouter } from './todos/routes'
+import { todosRouter as todosRouter } from './todos/routes/todosRouter'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
