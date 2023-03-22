@@ -7,10 +7,13 @@ import { User } from '../../users/schema/user'
 export const getAllTodos = async (req: Request, res: Response) => {
     const { userId } = req.body
     const user = await User.findById(userId)
+
     if (!user) {
         return res.json({ message: 'User not found' })
     }
+
     const { todos } = await user.populate('todos')
+
     res.json(todos)
 }
 
@@ -23,6 +26,7 @@ export const getTodoById = async (
         const { id: todoId } = req.params
         const { userId } = req.body
         const todo = await Todo.findOne({ owner: userId, _id: todoId })
+
         sendResourceIfExists<TodoType>(res, todo, Todo.modelName)
     } catch (e) {
         next(e)
@@ -37,12 +41,16 @@ export const createTodo = async (
     try {
         const { userId } = req.body
         const user = await User.findById(userId)
+
         if (!user) {
             return res.json({ message: 'User not found' })
         }
+
         const todo = await new Todo({ ...req.body, owner: userId }).save()
+
         user.todos.push(todo.id)
         await user.save()
+
         res.json(todo)
     } catch (e) {
         next(e)
@@ -63,6 +71,7 @@ export const patchTodoById = async (
             { ...update, owner: userId },
             { new: true }
         )
+
         sendResourceIfExists<TodoType>(res, todo, Todo.modelName)
     } catch (e) {
         next(e)
@@ -85,6 +94,7 @@ export const replaceTodoById = async (
                 new: true,
             }
         )
+
         sendResourceIfExists<TodoType>(res, todo, Todo.modelName)
     } catch (e) {
         next(e)
@@ -102,6 +112,7 @@ export const deleteTodoById = async (
             { owner: userId, _id: todoId },
             { new: true }
         )
+
         sendResourceIfExists<TodoType>(res, todo, Todo.modelName)
     } catch (e) {
         next(e)

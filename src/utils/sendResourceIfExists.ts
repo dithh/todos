@@ -8,6 +8,7 @@ export const sendResourceIfExists = <T>(
     if (resource) {
         return res.json(resource)
     }
+
     res.status(404)
     res.json({ message: `${resourceName} not found` })
 }

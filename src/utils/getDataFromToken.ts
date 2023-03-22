@@ -5,6 +5,4 @@ export interface AuthTokenData extends JwtPayload {
 }
 export const getDataFromToken = (
     token: string
-): string | AuthTokenData | null => {
-    return decode(token)
-}
+): string | AuthTokenData | null => decode(token)

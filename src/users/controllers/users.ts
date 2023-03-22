@@ -12,7 +12,9 @@ export const createUser = async (
         const { body } = req
         const saltRounds = 10
         const hashedPassword = await bcrypt.hash(body.password, saltRounds)
+
         await User.create({ username: body.username, password: hashedPassword })
+
         res.json({ message: 'User was created' })
     } catch (e) {
         next(e)
@@ -31,6 +33,7 @@ export const loginUser = async (
         if (!user) {
             return res.json({ message: 'User not found' })
         }
+
         const isPasswordValid = await bcrypt.compare(
             body.password,
             user.password
@@ -39,7 +42,9 @@ export const loginUser = async (
         if (!isPasswordValid) {
             return res.json({ message: 'Password invalid' })
         }
+
         setAuthTokenCookie({ id: user.id }, res)
+
         res.json({ message: 'User logged in' })
     } catch (e) {
         next(e)

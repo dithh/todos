@@ -30,13 +30,14 @@ const authorizationHandler = (
     const tokenData = <TokenDataType>(
         jwt.verify(authToken, <string>process.env['JWT_SECRET'])
     )
+
     if (!authToken || !tokenData) {
         res.status(401)
         res.send({ message: 'Unathorized' })
-    } else {
-        req.body.userId = tokenData.id
-        next()
+        return
     }
+    req.body.userId = tokenData.id
+    next()
 }
 
 export const app = express()
