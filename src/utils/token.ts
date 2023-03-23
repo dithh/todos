@@ -1,4 +1,4 @@
-import jwt, { decode, JwtPayload } from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 import { TokenDataType } from '../types/TokenDataType'
 import { Response } from 'express'
 
