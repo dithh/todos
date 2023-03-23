@@ -1,11 +1,11 @@
 import express, { NextFunction, Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
-import { todosRouter as todosRouter } from './todos/routes/todosRouter'
+import { todosRouter as todosRouter } from './todos/todosRouter'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import type { ErrorRequestHandler } from 'express'
-import { usersRouter } from './users/routes/usersRouter'
+import { usersRouter } from './users/usersRouter'
 import jwt from 'jsonwebtoken'
 import { TokenDataType } from './types/TokenDataType'
 

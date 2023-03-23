@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import bcrypt from 'bcrypt'
-import { User } from '../schema/userSchema'
-import { setAuthTokenCookie } from '../../utils/token'
+import { User } from './userSchema'
+import { setAuthTokenCookie } from '../utils/token'
 
 export const createUser = async (
     req: Request,

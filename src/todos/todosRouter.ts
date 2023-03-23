@@ -6,7 +6,7 @@ import {
     patchTodoById,
     deleteTodoById,
     replaceTodoById,
-} from '../controllers/todosController'
+} from './todosController'
 
 export const todosRouter = Router()
 
